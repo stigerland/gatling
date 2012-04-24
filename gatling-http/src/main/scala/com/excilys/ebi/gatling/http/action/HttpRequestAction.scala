@@ -90,7 +90,7 @@ class HttpRequestAction(next: ActorRef, request: HttpRequest, checks: Option[Lis
 			givenChecksContent.find(_.phase == StatusReceived)
 				.map(_ => givenChecksContent)
 				.getOrElse(HttpRequestAction.DEFAULT_HTTP_STATUS_CHECK :: givenChecksContent)
-		case None => Nil
+		case None => List(HttpRequestAction.DEFAULT_HTTP_STATUS_CHECK)
 	}
 
 	def execute(session: Session) = {
